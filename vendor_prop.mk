@@ -66,8 +66,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.xm.green.b=0.96 \
     persist.camera.xm.green.r=0.97 \
     persist.dualcam.lpm.enable=1 \
-    vendor.camera.aux.packagelist=com.android.camera,org.mokee.snap \
-    vidc.enc.dcvs.extra-buff-count=2
+    vendor.camera.aux.packagelist=com.android.camera,com.google.android.GoogleCamera,org.lineageos.snap \
+    persist.camera.privapp.list=com.android.camera,com.google.android.GoogleCamera,org.lineageos.snap \
+    vidc.enc.dcvs.extra-buff-count=2 \
+    vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -79,6 +81,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     debug.sf.latch_unsignaled=1 \
     ro.opengles.version=196610 \
+    ro.sf.lcd_density=428 \
     vendor.display.disable_partial_split=1 \
     vendor.display.disable_rotator_downscale=1 \
     vendor.display.disable_skip_validate=1 \
