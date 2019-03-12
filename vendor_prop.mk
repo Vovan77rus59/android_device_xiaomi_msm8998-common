@@ -69,7 +69,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.camera.aux.packagelist=com.android.camera,com.google.android.GoogleCamera,org.lineageos.snap \
     persist.camera.privapp.list=com.android.camera,com.google.android.GoogleCamera,org.lineageos.snap \
     vidc.enc.dcvs.extra-buff-count=2 \
-    vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner
+    vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner,com.facebook.katana,com.instagram.android,com.snapchat.android
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
