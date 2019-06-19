@@ -39,9 +39,6 @@ TARGET_NO_BOOTLOADER := true
 
 TARGET_USES_64_BIT_BINDER := true
 
-# SD Clang
-TARGET_USE_SDCLANG := true
-
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
@@ -128,6 +125,10 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+# CPU Boost
+ENABLE_CPUSETS := true
+ENABLE_SCHED_BOOST := true
+
 # Display
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 TARGET_USES_GRALLOC1 := true
@@ -145,6 +146,16 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
 
 # Extended Filesystem Support
 TARGET_EXFAT_DRIVER := sdfat
+
+# Enable dexpreopt to speed boot time
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+    endif
+  endif
+endif
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
@@ -186,16 +197,21 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_xiaomi
 TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
 
 # RIL
+PROTOBUF_SUPPORTED := true
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 TARGET_RIL_VARIANT := caf
 TARGET_USES_OLD_MNC_FORMAT := true
 
+# Telephony
+TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true
+
 # Security patch level
-VENDOR_SECURITY_PATCH := 2019-04-01
+VENDOR_SECURITY_PATCH := 2019-06-01
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
+# SELINUX_IGNORE_NEVERALLOWS := true
 
 # Treble
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
